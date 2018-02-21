@@ -32,8 +32,3 @@ print('The default graph create by us :',make_default)
 Now let's try to recall the default graph from Tensor and check whether 
 it is called the default graph created by us or not.'''
 print(tf.get_default_graph())
-
-if (tf.get_default_graph == make_default):
-    print( 'Customized group {} is now default graph'.format(make_default))
-else:
-    print('Oops the default graph is still different from the customized graph')
