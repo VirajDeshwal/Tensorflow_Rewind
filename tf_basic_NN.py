@@ -85,3 +85,16 @@ plt.plot(x_test, y_labels, color='red')
 plt.plot(x_data,y_labels,'*')
     
 
+''' Let's use the estimator API'''
+feat_col = [tf.feature_column.numeric_column('x', shape = [1])]
+estimator = tf.estimator.LinearRegressor(feature_columns=feat_col)
+
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x_data, y,
+                                                    test_size =0.2)
+print(x_train.shape)
+
+''' We need an input function which can act like a dict which can take feed fucntion and batch size at once'''
+input_func = tf.estimator.inputs.numpy_io({'x':x_train}, y_train,
+                                          batch_size=8,
+                                          num_epochs=None, shuffle=True)
